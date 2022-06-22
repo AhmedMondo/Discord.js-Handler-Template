@@ -13,7 +13,7 @@
 <br/>
 - have **node.js v16.6 or higher**
 
-- in `./src/configs/config.json` Adjust the BOT TOKEN and PREFIX
+- in `./src/configs/config.js` Adjust the BOT TOKEN and PREFIX
 
 - `npm install` to Install the depedences
 
