@@ -26,7 +26,7 @@ class Help extends Command{
                 
 
                 .setTitle('Help')
-                .setDescription(`This Bot can be Self Hosted here : [Github Repo](https://ticket-manager.org)\nif you found bugs you can contact me : Ahmed_Mondo#4553\n\nNavigate through the pages using the buttons below`)
+                .setDescription(`This Bot can be Self Hosted here : [Github Repo](https://github.com/AhmedMondo/Discord.js-Handler-Template)\nif you found bugs you can contact me : **! 𝐉𝐅・Ahmed_Mondo#4553**\n\nNavigate through the pages using the buttons below`)
 
                 .addField('Pages', '\`1\` - This page\n' + cmds.map((commands, i) => `\`${i + 2}\` - ${commands.category}`).join('\n'))
             let pages = [embed];
