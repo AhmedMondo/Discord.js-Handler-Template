@@ -1,4 +1,4 @@
-# Discord-Js-Handler-Template
+# Discord.js-Handler-Template
 
 
 ***
