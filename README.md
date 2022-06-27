@@ -40,17 +40,17 @@
 
 ## Config File
 
-> [*] lines are Required
+> * lines are Required
 
 > * First rename `config.js.example` to `config.js` in `./src/configs/config.js`
 
-> * `TOKEN` which means Discord Token and you can get it from (Discord Developer Portal)[https://discord.com/developers/applications]
+> * `TOKEN` which means Discord Token and you can get it from [Discord Developer Portal](https://discord.com/developers/applications)
 
 > * `PREFIX` change it to whatever you want and this means `%ping` , `%help` in normal commands
 
 > `mainGuild` Main Server ID , leave it blank if you want to globally activate slah commands
 
-> * `MongoDB` Database and you get get url from (MongoDB Cloud)[https://cloud.mongodb.com/]
+> * `MongoDB` Database and you get get url from [MongoDB Cloud](https://cloud.mongodb.com/)
 
 <br/>
   
