@@ -13,8 +13,6 @@
 <br/>
 - have **node.js v16.6 or higher**
 
-- in `./src/configs/config.js` Adjust the BOT TOKEN and PREFIX
-
 - `npm install` to Install the depedences
 
 - `node .` to start the Bot
@@ -28,11 +26,31 @@
 
 ## Commands Information
 
-> To add a command create a Folder in `./src/commands`
+> To add a command Category create a Folder in `./src/commands`
 
-> Make sure to add it's Settings in `./src/configs/config.js`
+> To add a command Category create a Folder in `./src/slashCommands`
 
 > If u want to create "normal" commands create the files just in `./src/commands` and choose which category you want
+
+> If u want to create "Slash" commands create the files just in `./src/slashCommands` and choose which category you want
+
+<br/>
+
+<br/>
+
+## Config File
+
+> [*] lines are Required
+
+> * First rename `config.js.example` to `config.js` in `./src/configs/config.js`
+
+> * `TOKEN` which means Discord Token and you can get it from (Discord Developer Portal)[https://discord.com/developers/applications]
+
+> * `PREFIX` change it to whatever you want and this means `%ping` , `%help` in normal commands
+
+> `mainGuild` Main Server ID , leave it blank if you want to globally activate slah commands
+
+> * `MongoDB` Database and you get get url from (MongoDB Cloud)[https://cloud.mongodb.com/]
 
 <br/>
   

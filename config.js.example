@@ -1,0 +1,8 @@
+const Config = {
+    token: 'TOKEN', //Discord Bot Token - https://discord.com/developers/applications/,
+    prefix: '%', // Default Prefix
+    mainGuildID: '123456789012345678', // Main Guild of the bot
+    MongoDB: 'MongoURL'//MongoDB Url - https://cloud.mongodb.com
+};
+
+module.exports = Config;
