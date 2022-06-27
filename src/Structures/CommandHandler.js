@@ -75,7 +75,6 @@ class CommandHandler {
             const commandFile = new File(this.client, name.toLowerCase());
             commandFile.path = commandName
             this.client.commands.set(commandFile.name, commandFile);
-            command.description = commandFile.description
             command.aliases.forEach(alias => {
                 this.client.aliases.set(alias, command);
     });
@@ -84,9 +83,6 @@ class CommandHandler {
 
         let files = this.getCommands(this.directory);
         for (let commandFile of files) {
-/*             const command = require(`${process.cwd()}/${file}`);
-            this.commands.push(command.data.toJSON());
-            this.client.commands.set(command.data.name, command); */
             delete require.cache[require.resolve(commandFile)];
             
             const { name } = parse(commandFile);

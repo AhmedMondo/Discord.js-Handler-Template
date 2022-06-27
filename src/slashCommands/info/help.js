@@ -1,23 +1,28 @@
-const { MessageEmbed } = require("discord.js");
-const Command = require("../../Structures/Command")
-const GuildModel = require("../../DataBase/models/GuildModel")
-class Help extends Command{
+const Command = require("../../Structures/SlashCommand");
+const { MessageEmbed } = require("discord.js")
+module.exports = class PingCommand extends Command {
     constructor(...args) {
-        super(...args , {
+        super(...args, {
             name: 'help',
-            description: 'Getting Info',
+            description: 'Getting help',
             category: 'Info',
-            aliases: ['commands' , 'cmds'],
-            usage: "{prefix}help",
-            examples: ['{prefix}help' , '{prefix}help ping'],
-            cooldown : 3500
+            commandOptions: [
+                {
+                    name : 'command',
+                    type: 'STRING',
+                    description : 'Get details of specefic command',
+                    required: false
+                }
+            ]
         });
     };
 
-    async CommandRun(message , args) {
+
+
+    async InteractionRun(interaction) {
         try {
-            let GuildData = await GuildModel.findOne({guildId: message.guild.id})
-            if(!args[0]) {
+            let command = interaction.options.getString('command')
+            if(!command) {
                 let cmds;
                 cmds = this.client.commandHandler.formatCommands()
                 
@@ -46,33 +51,31 @@ class Help extends Command{
                 }
 
 
-                return this.client.buttonPaginator.start(message , pages)
+                return this.client.buttonPaginator.start(interaction , pages , true)
 
             }
-            let commandname = this.client.commands.map(cmd => cmd).find(cmd => cmd.name.toLowerCase() == args[0].toLowerCase() || cmd.aliases.includes(args[0].toLowerCase()))
+            let commandname = this.client.commands.map(cmd => cmd).find(cmd => cmd.name.toLowerCase() == command.toLowerCase())
             if(!commandname) {
-                return message.reply(`**I can't find this command.**`)
+                return interaction.reply(`**I can't find this command.**`)
             }
             let Embed = new MessageEmbed()
             .setTitle(`Command: ${commandname.name}`)
             .setDescription(`${commandname.description}`)
             .setFooter({
-                text: `Requester By ${message.author.tag}`,
-                iconURL: message.author.displayAvatarURL({dynamic:true})
+                text: `Requester By ${interaction.user.tag}`,
+                iconURL: interaction.user.displayAvatarURL({dynamic:true})
             })
             .setTimestamp()
-           if(commandname.usage) Embed.addField('Usage:' , `${commandname.usage.replaceAll('{prefix}' , GuildData.prefix)}`)
-           if(commandname.aliases?.length >= 1) Embed.addField('Aliases:' , `\`${commandname.aliases.join(' , ').replaceAll('{prefix}' , GuildData.prefix)}\``)
-           if(commandname.examples?.length >= 1) Embed.addField('Examples:' , `${commandname.examples.join(`\n`).replaceAll('{prefix}' , GuildData.prefix)}`)
+           if(commandname.usage) Embed.addField('Usage:' , `${commandname.usage.replaceAll('{prefix}' , this.client.prefix)}`)
+           if(commandname.aliases?.length >= 1) Embed.addField('Aliases:' , `\`${commandname.aliases.join(' , ').replaceAll('{prefix}' , this.client.prefix)}\``)
+           if(commandname.examples?.length >= 1) Embed.addField('Examples:' , `${commandname.examples.join(`\n`).replaceAll('{prefix}' , this.client.prefix)}`)
 
             
-            return message.reply({ embeds: [Embed]});
+            return interaction.reply({ embeds: [Embed]});
             
         } catch (error) {
             console.error(error);
-            return this.client.utils.error(message, error);
+            return this.client.utils.error(interaction, error);
         };
-    }
-}
-
-module.exports = Help
+    };
+};
