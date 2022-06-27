@@ -13,7 +13,7 @@ class Message extends Event {
       if(message.author.bot) return undefined;
       if(message.author.id == this.client.user.id) return undefined;
       var prefix = this.client.prefix;
-//console.log("Hi after reload")
+
 let GuildData = await GuildModel.findOne({guildId: message.guild.id})
 if(GuildData) {
 
